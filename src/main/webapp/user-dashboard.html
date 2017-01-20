@@ -1,0 +1,87 @@
+<html>
+
+
+<head>
+<title>User Dashboard</title>
+<style>
+.x2 {
+	float: left;
+	width: 50%;
+}
+
+button {
+	color: #fff
+}
+
+button a {
+	text-decoration: none;
+	color: #fff;
+}
+
+button {
+	background: blue;
+}
+</style>
+</head>
+<body ng-app="productApp">
+	<button>
+		<a href="#addNewProduct">Add New Product</a>
+	</button>
+	<a href="logout.do">Logout</a>
+	<div ng-controller="productController">
+
+		<div class="x2">
+			<h3>All Products</h3>
+			<table id="productTable" border="1">
+				<thead>
+					<tr>
+						<th>Sl No</th>
+						<th>product id</th>
+						<th>product name</th>
+						<th>product price</th>
+						<th>Actions</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="p in products">
+						<td>{{$index+1}}.</td>
+
+						<td><span ng-bind="p.productSlnum"></span></td>
+						<td><span ng-bind="p.productName"></span></td>
+						<td><span ng-bind="p.productPrice"></span></td>
+
+						<td>
+
+							<button type="button">
+								<a href="#showProduct/{{p.productSlnum}}">Show</a>
+							</button>
+							<button type="button" class="btn btn-success custom-width">
+								<a href="#editProduct/{{p.productSlnum}}">Edit</a>
+							</button>
+							<button type="button"
+								ng-click="removeProduct($index+1,p.productSlnum)"
+								class="btn btn-danger custom-width">Remove</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+		<div class="x2">
+			<h3>Dynamic Div</h3>
+			<div class="ng-view"></div>
+		</div>
+
+
+	</div>
+	<script
+		src="static/js/1.0.7-angular.min.js"></script>
+
+	<!-- custom js -->
+	<script src="static/app.js"></script>
+	<script src="static/productController.js"></script>
+	<script src="static/routingController.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+
+	<http auto-config="true">
+		<access-denied-handler error-page="/Access_Denied.do" />
+		<intercept-url pattern="/home.do**"
+			access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/admin.do/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/db.do**"
+			access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')" />
+
+		<form-login login-page="/loginPage.do" default-target-url="/dashboard.html"
+			authentication-failure-url="/loginPage.do?error" username-parameter="username"
+			password-parameter="password" authentication-success-handler-ref="appAuthSuccessHandler" />
+		<logout logout-success-url="/loginPage.do?logout" />
+		<!-- enable csrf protection -->
+
+
+		<csrf disabled="true"/>
+	</http>
+
+
+	<authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="user" password="user123" authorities="ROLE_USER" />
+				<user name="rajesh" password="rajesh123" authorities="ROLE_ADMIN" />
+				<user name="dba" password="dba123" authorities="ROLE_DBA" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+
+	<beans:bean id="appAuthSuccessHandler" class="com.spring.security.AppAuthSuccessHandler" />
+</beans:beans>

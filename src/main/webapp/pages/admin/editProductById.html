@@ -1,0 +1,14 @@
+<h1>{{message}} : {{productId}}</h1>
+<br />
+<form name="myForm" novalidate>
+	<div class="form-label">Serial Num:</div>
+	<input placeholder="optional" readonly="true" name="productSlnum"
+		ng-model="productSlnum" /> </br>
+	<div class="form-label">Name:</div>
+	<input type="text" ng-model="productName" required /> </br>
+	<div class="form-label">Price:</div>
+	<input type="number" ng-model="productPrice" required /> </br> <input
+		type="hidden" ng-model="opcode" />
+	<button ng-click="sendData()" style="width: 54px">Submit</button>
+</form>
+{{PostDataResponse}}

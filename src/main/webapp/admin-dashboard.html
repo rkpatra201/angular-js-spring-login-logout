@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
+<title>Admin Dashboard</title>
+<style>
+.x1 {
+	float: left;
+	width: 100%;
+	background-color: red;
+}
+
+.topNav {
+	background: blue;
+	margin-bottom: 20px;
+	text-align: right;
+	padding-right: 5px;
+}
+
+.topNav a {
+	color: #fff;
+}
+
+.x9 {
+	width: 15%;
+	float: left;
+	background: yellow;
+	margin-left: 1.35%;
+	margin-right: 2%;
+}
+
+.x1-x9 {
+	width: 84%;
+	float: left;
+}
+
+.x2 {
+	float: left;
+	width: 75%;
+	background: #fff;
+}
+
+.sideNav {
+	padding: 5px;
+}
+
+#content {
+	padding: 25px;
+}
+
+button {
+	color: #fff;
+	width: 100%;
+}
+
+button a {
+	text-decoration: none;
+	color: #fff;
+}
+
+button {
+	background: blue;
+	padding: 5px 0 5px 0;
+}
+
+body {
+	width: 90%;
+	margin: 0 auto;
+}
+
+td {
+	width: 15%;
+}
+
+td button {
+	width: 30%;
+}
+
+.userName {
+	font-style: bold;
+	color: white;
+}
+
+.form-label {
+	font-size: 15px;
+	font-weight: bold;
+	
+}
+</style>
+</head>
+<body ng-app="productApp">
+
+	<div ng-controller="productController">
+
+		<div class="x1">
+			<div ng-include="headerPage"></div>
+			<div class="topNav" ng-include="topNav"></div>
+		</div>
+		<div class="x1">
+			<div class="x9">
+				<div class="sideNav" ng-include="sideNav"></div>
+			</div>
+
+
+
+			<div id="content" class="x2">
+				<div class="ng-view"></div>
+			</div>
+		</div>
+		<div class="x1">
+			<div ng-include="footerPage"></div>
+		</div>
+
+
+	</div>
+	<script src="static/js/1.0.7-angular.min.js"></script>
+
+	<!-- custom js -->
+	<script src="static/app.js"></script>
+	<script src="static/productController.js"></script>
+	<script src="static/routingController.js"></script>
+</body>
+</html>
